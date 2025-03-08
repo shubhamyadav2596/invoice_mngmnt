@@ -201,7 +201,7 @@ const actions = {
     try {
       console.log('Fetching invoices...')
       // Make API call to fetch invoices from backend
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/invoices`, {
+      const response = await axios.get(`${import.meta.env.VUE_APP_API_URL}/api/invoices`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -236,7 +236,7 @@ const actions = {
     
     try {
       // Make API call to fetch a specific invoice
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/invoices/${id}`, {
+      const response = await axios.get(`${import.meta.env.VUE_APP_API_URL}/api/invoices/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -261,7 +261,7 @@ const actions = {
       const data = invoiceData || state.currentInvoice
       
       // Make API call to create invoice - using full URL path
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/invoices/`, data, {
+      const response = await axios.post(`${import.meta.env.VUE_APP_API_URL}/api/invoices/`, data, {
         headers: {
           ...getAuthHeader(),
           'Content-Type': 'application/json'
@@ -292,7 +292,7 @@ const actions = {
     
     try {
       // Make API call to update invoice in backend
-      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/invoices/${id}`, invoiceData, {
+      const response = await axios.put(`${import.meta.env.VUE_APP_API_URL}/api/invoices/${id}`, invoiceData, {
         headers: {
           ...getAuthHeader(),
           'Content-Type': 'application/json'
@@ -327,7 +327,7 @@ const actions = {
     
     try {
       // Make API call to delete invoice from backend
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/invoices/${id}`, {
+      await axios.delete(`${import.meta.env.VUE_APP_API_URL}/api/invoices/${id}`, {
         headers: getAuthHeader()
       })
       
