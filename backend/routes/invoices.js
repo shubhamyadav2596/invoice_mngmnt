@@ -7,8 +7,12 @@ const router = express.Router();
 // Get all invoices for the authenticated user
 router.get('/', authMiddleware, async (req, res) => {
   try {
+    console.log('Fetching invoices for user:', req.user.id);
+    
     const invoices = await Invoice.find({ createdBy: req.user.id })
       .sort({ createdAt: -1 });
+    
+    console.log(`Found ${invoices.length} invoices`);
     
     res.json(invoices);
   } catch (error) {
