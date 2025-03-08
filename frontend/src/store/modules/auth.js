@@ -27,7 +27,7 @@ const actions = {
     commit('clearError')
     
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, credentials)
+      const response = await axios.post(`${API_URL}/api/auth/login`, credentials)
       const { token, user } = response.data
       
       // Save token to localStorage
@@ -65,7 +65,7 @@ const actions = {
     commit('clearError')
     
     try {
-      const response = await axios.post(`${API_URL}/auth/register`, userData)
+      const response = await axios.post(`${API_URL}/api/auth/register`, userData)
       const { token, user } = response.data
       
       // Save token to localStorage
@@ -110,7 +110,7 @@ const actions = {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       
       // Fetch user data
-      const response = await axios.get(`${API_URL}/auth/me`)
+      const response = await axios.get(`${API_URL}/api/auth/me`)
       const user = response.data
       
       commit('setAuth', { token, user, expiration })
