@@ -25,7 +25,7 @@ const actions = {
     commit('clearError')
     
     try {
-      const response = await axios.post('https://invoice-mngmnt.onrender.com/api/auth/login', credentials)
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, credentials)
       const { token, user } = response.data
       
       // Save token to localStorage
@@ -63,7 +63,7 @@ const actions = {
     commit('clearError')
     
     try {
-      const response = await axios.post('https://invoice-mngmnt.onrender.com/api/auth/register', userData)
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, userData)
       const { token, user } = response.data
       
       // Save token to localStorage
@@ -108,7 +108,7 @@ const actions = {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       
       // Fetch user data
-      const response = await axios.get('https://invoice-mngmnt.onrender.com/api/auth/me')
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/me`)
       const user = response.data
       
       commit('setAuth', { token, user, expiration })
