@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(cors({
-  origin: 'https://invoice-mngmnt-1.onrender.com'
+  origin: process.env.CLIENT_URL
 }));
 app.use(express.json());
 
