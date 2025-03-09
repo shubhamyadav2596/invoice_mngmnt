@@ -41,17 +41,21 @@ const routes = [
     component: CreateInvoice,
     meta: { requiresAuth: true }
   },
-  // In your routes array
   {
     path: '/invoices/edit/:id',
     name: 'InvoiceEdit',
     component: InvoiceEdit,
     meta: { requiresAuth: true }
+  },
+  // Add a catch-all route to handle 404s
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/dashboard'
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.VITE_API_URL || 'https://invoice-mngmnt.onrender.com'),
   routes
 })
 
