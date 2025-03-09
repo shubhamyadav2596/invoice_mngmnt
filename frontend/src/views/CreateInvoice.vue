@@ -124,7 +124,8 @@
               <div class="col-md-4 mb-3">
                 <label for="customerPincode" class="form-label">Pincode</label>
                 <input type="text" class="form-control" id="customerPincode" v-model="invoiceToDetails.pincode"
-                  placeholder="Enter Pincode" :class="{ 'is-invalid': errors.customerPincode }">
+                  placeholder="Enter Pincode" :class="{ 'is-invalid': errors.customerPincode }"
+                  @input="validatePincode" maxlength="6">
                 <div v-if="errors.customerPincode" class="invalid-feedback">{{ errors.customerPincode }}</div>
               </div>
 
@@ -384,6 +385,10 @@ export default {
         this.sidebarOpen = true;
       }
     },
+    validatePincode() {
+      // Remove any non-numeric characters
+      this.invoiceToDetails.pincode = this.invoiceToDetails.pincode.replace(/\D/g, '');
+    },
     validateStep1() {
       this.errors = {}
       let isValid = true
@@ -442,6 +447,15 @@ export default {
         isValid = false
       } else if (!/\S+@\S+\.\S+/.test(this.invoiceToDetails.email)) {
         this.errors.customerEmail = 'Please enter a valid email'
+        isValid = false
+      }
+
+      // Add pincode validation
+      if (!this.invoiceToDetails.pincode) {
+        this.errors.customerPincode = 'Pincode is required'
+        isValid = false
+      } else if (!/^\d{6}$/.test(this.invoiceToDetails.pincode)) {
+        this.errors.customerPincode = 'Pincode must be exactly 6 digits'
         isValid = false
       }
 
