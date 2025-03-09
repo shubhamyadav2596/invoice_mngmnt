@@ -273,7 +273,7 @@
                 <p class="mb-0">Date: <span>{{ formatDate(invoiceToDetails.date) || '23-04-2024' }}</span></p>
               </div>
 
-              <div class="invoice-table px-5">
+              <div class="invoice-table overflow-x-auto px-5">
                 <table class="table table-responsive table-bordered">
                   <thead>
                     <tr>
@@ -650,6 +650,9 @@ label {
     font-size: 14px;
 }
 
+.table {
+  min-width: 800px;
+}
 
 .table tr th  {
   background: #FFF6EC;
