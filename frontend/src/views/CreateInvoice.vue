@@ -274,7 +274,7 @@
               </div>
 
               <div class="invoice-table px-5">
-                <table class="table table-bordered">
+                <table class="table table-responsive table-bordered">
                   <thead>
                     <tr>
                       <th>Product</th>
@@ -650,9 +650,6 @@ label {
     font-size: 14px;
 }
 
-.table {
-  min-width: 800px;
-}
 
 .table tr th  {
   background: #FFF6EC;
