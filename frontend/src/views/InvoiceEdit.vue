@@ -438,6 +438,10 @@ label {
  input, textarea {
   background: transparent;
 }
+.table {
+  min-width: 800px;
+}
+
 .table tr th  {
   background: #FFF6EC;
   font-size: 13px;

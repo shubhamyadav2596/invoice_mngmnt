@@ -160,7 +160,7 @@
 
         <!-- Step 2: Transaction Details -->
         <div v-if="currentStep === 2" class="card bg-transparent border-0">
-          <div class="card-body">
+          <div class="card-body position-relative">
             <h4 class="mb-4">Transaction Details</h4>
 
             <div class="table-responsive mb-4">
@@ -214,9 +214,9 @@
               </table>
             </div>
 
-            <div class="d-flex justify-content-between mb-4">
-              <button @click="addItem" class="btn btn-outline-primary">
-                <i class="bi bi-plus-lg me-2"></i> Add Item
+            <div class="d-flex justify-content-end mb-4">
+              <button @click="addItem" class="btn add-prd-btn btn-primary rounded-circle">
+                <i class="bi bi-plus-lg"></i> 
               </button>
 
               <div class="d-flex col-8 col-md-4 justify-content-between bg-body-secondary px-4 py-2 border align-items-center">
@@ -625,6 +625,18 @@ label {
 }
  input, textarea {
   background: transparent;
+}
+
+.add-prd-btn {
+  position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    font-size: 14px;
+}
+
+.table {
+  min-width: 800px;
 }
 
 .table tr th  {
