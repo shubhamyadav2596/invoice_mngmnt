@@ -55,7 +55,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.VITE_API_URL || 'https://invoice-mngmnt.onrender.com'),
+  history: createWebHistory(import.meta.env.VITE_API_URL || '/'),
   routes
 })
 
