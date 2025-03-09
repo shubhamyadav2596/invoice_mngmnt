@@ -1,7 +1,7 @@
 <template>
   <div class="auth-container">
     <div class="auth-card">
-      <div class="text-center mb-4">
+      <div class="mb-4">
         <img src="../assets/logoo.png" alt="Logo" class="logo">
         <h2 class="mb-3">Register</h2>
       </div>
