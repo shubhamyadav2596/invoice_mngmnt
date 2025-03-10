@@ -9,41 +9,41 @@ import InvoiceEdit from '../views/InvoiceEdit.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: 'https://invoice-mngmnt-1.onrender.com/login'
   },
   {
-    path: '/login',
+    path: 'https://invoice-mngmnt-1.onrender.com/login',
     name: 'Login',
     component: Login,
     meta: { requiresAuth: false }
   },
   {
-    path: '/register',
+    path: 'https://invoice-mngmnt-1.onrender.com/register',
     name: 'Register',
     component: Register,
     meta: { requiresAuth: false }
   },
   {
-    path: '/dashboard',
+    path: 'https://invoice-mngmnt-1.onrender.com/dashboard',
     name: 'Dashboard',
     component: Dashboard,
     meta: { requiresAuth: true }
   },
   {
-    path: '/invoices',
+    path: 'https://invoice-mngmnt-1.onrender.com/invoices',
     name: 'InvoiceList',
     component: InvoiceList,
     meta: { requiresAuth: true }
   },
   {
-    path: '/invoices/create',
+    path: 'https://invoice-mngmnt-1.onrender.com/invoices/create',
     name: 'CreateInvoice',
     component: CreateInvoice,
     meta: { requiresAuth: true }
   },
   // In your routes array
   {
-    path: '/invoices/edit/:id',
+    path: 'https://invoice-mngmnt-1.onrender.com/invoices/edit/:id',
     name: 'InvoiceEdit',
     component: InvoiceEdit,
     meta: { requiresAuth: true }
@@ -61,7 +61,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login')
   } else if (!to.meta.requiresAuth && isAuthenticated) {
-    next('/dashboard')
+    next('https://invoice-mngmnt-1.onrender.com/dashboard')
   } else {
     next()
   }
