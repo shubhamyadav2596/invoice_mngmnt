@@ -88,7 +88,7 @@
       <div class="card border-0">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4 py-4 bg-primary">
+            <div class="col-md-4 text-white py-4 bg-primary">
               <h5 class="mb-2 mt-2">{{ invoices.length }}</h5>
               <p class="mb-3 fw-bold text">Total</p>
             </div>
