@@ -53,15 +53,15 @@
             <div class="col-md-6 mb-3">
               <label class="form-label">Date Range</label>
               <div class="d-flex gap-2">
-                <!-- <input type="date" class="form-control" v-model="dateRange.start" @change="updateDateRange" 
-                       :min="minDate" :max="dateRange.end || maxDate" placeholder="Start Date"> -->
-                       <input type="date" class="form-control" v-model="dateRange.start" @change="updateDateRange">
+                <!-- <input type="date" class="form-control" v-model="dateRange.start" @change="updateDateRange"> -->
+                <input type="date" class="form-control" v-model="dateRange.start" @change="updateDateRange" 
+                       :min="minDate" :max="dateRange.end || maxDate" placeholder="Start Date">
                 <input type="date" class="form-control" v-model="dateRange.end" @change="updateDateRange"
                        :min="dateRange.start || minDate" :max="maxDate" placeholder="End Date">
               </div>
             </div>
             
-        
+            <!-- Price Range - Removed -->
             
             <!-- States -->
             <div class="col-md-12 mb-3">
@@ -232,19 +232,14 @@ export default {
       loading: state => state.invoice.loading,
       error: state => state.invoice.error
     }),
-    // minDate() {
-    //   if (this.invoices.length === 0) return '';
-    //   return this.invoices.reduce((min, invoice) => {
-    //     const date = new Date(invoice.createdAt);
-    //     return date < new Date(min) ? date.toISOString().split('T')[0] : min;
-    //   }, new Date().toISOString().split('T')[0]);
-    // },
+    minDate() {
+      // Set minimum date to 6 months before current date
+      const date = new Date();
+      date.setMonth(date.getMonth() - 6);
+      return date.toISOString().split('T')[0];
+    },
     maxDate() {
-      if (this.invoices.length === 0) return '';
-      return this.invoices.reduce((max, invoice) => {
-        const date = new Date(invoice.createdAt);
-        return date > new Date(max) ? date.toISOString().split('T')[0] : max;
-      }, '1970-01-01');
+      return new Date().toISOString().split('T')[0];
     },
     userGenerated() {
       return this.invoices.filter(invoice => invoice.generatedBy === 'User').length
