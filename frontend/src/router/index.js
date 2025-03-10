@@ -47,19 +47,11 @@ const routes = [
     name: 'InvoiceEdit',
     component: InvoiceEdit,
     meta: { requiresAuth: true }
-  },
-  // Add a catch-all route to handle 404s
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: to => {
-      const isAuthenticated = localStorage.getItem('token');
-      return isAuthenticated ? '/dashboard' : '/login';
-    }
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(''),
+  history: createWebHistory(),
   routes
 })
 
