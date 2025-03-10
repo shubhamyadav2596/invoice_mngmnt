@@ -153,20 +153,18 @@ const getters = {
     // Date range
     if (state.dateRange.start && state.dateRange.end) {
       const start = new Date(state.dateRange.start)
+      start.setHours(0, 0, 0, 0) // Set to beginning of day
+      
       const end = new Date(state.dateRange.end)
+      end.setHours(23, 59, 59, 999) // Set to end of day
+      
       filtered = filtered.filter(invoice => {
         const date = new Date(invoice.createdAt)
         return date >= start && date <= end
       })
     }
 
-    // Price range
-    if (state.priceRange.min !== '') {
-      filtered = filtered.filter(invoice => invoice.total >= Number(state.priceRange.min))
-    }
-    if (state.priceRange.max !== '') {
-      filtered = filtered.filter(invoice => invoice.total <= Number(state.priceRange.max))
-    }
+  
 
     // States
     if (state.selectedStates.length > 0) {

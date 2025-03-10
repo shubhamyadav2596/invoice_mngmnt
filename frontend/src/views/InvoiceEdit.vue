@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid">
+     <!-- Hamburger button for medium devices -->
     <HemBurger @click="toggleSidebar"/>
     <div class="row">
       <!-- Sidebar -->

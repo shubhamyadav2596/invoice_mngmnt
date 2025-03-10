@@ -53,22 +53,16 @@
             <div class="col-md-6 mb-3">
               <label class="form-label">Date Range</label>
               <div class="d-flex gap-2">
-                <input type="date" class="form-control" v-model="dateRange.start" @change="updateDateRange">
-                <input type="date" class="form-control" v-model="dateRange.end" @change="updateDateRange">
+                <!-- <input type="date" class="form-control" v-model="dateRange.start" @change="updateDateRange" 
+                       :min="minDate" :max="dateRange.end || maxDate" placeholder="Start Date"> -->
+                       <input type="date" class="form-control" v-model="dateRange.start" @change="updateDateRange">
+                <input type="date" class="form-control" v-model="dateRange.end" @change="updateDateRange"
+                       :min="dateRange.start || minDate" :max="maxDate" placeholder="End Date">
               </div>
             </div>
             
-            <!-- Price Range -->
-            <div class="col-md-6 mb-3">
-              <label class="form-label">Price Range</label>
-              <div class="d-flex gap-2">
-                <input type="number" class="form-control" placeholder="Min" v-model="priceRange.min"
-                  @input="updatePriceRange">
-                <input type="number" class="form-control" placeholder="Max" v-model="priceRange.max"
-                  @input="updatePriceRange">
-              </div>
-            </div>
-
+        
+            
             <!-- States -->
             <div class="col-md-12 mb-3">
               <label class="form-label">States</label>
@@ -221,10 +215,6 @@ export default {
         start: '',
         end: ''
       },
-      priceRange: {
-        min: '',
-        max: ''
-      },
       isLoading: false,
       sidebarOpen: true,
       isMobile: false
@@ -242,6 +232,20 @@ export default {
       loading: state => state.invoice.loading,
       error: state => state.invoice.error
     }),
+    // minDate() {
+    //   if (this.invoices.length === 0) return '';
+    //   return this.invoices.reduce((min, invoice) => {
+    //     const date = new Date(invoice.createdAt);
+    //     return date < new Date(min) ? date.toISOString().split('T')[0] : min;
+    //   }, new Date().toISOString().split('T')[0]);
+    // },
+    maxDate() {
+      if (this.invoices.length === 0) return '';
+      return this.invoices.reduce((max, invoice) => {
+        const date = new Date(invoice.createdAt);
+        return date > new Date(max) ? date.toISOString().split('T')[0] : max;
+      }, '1970-01-01');
+    },
     userGenerated() {
       return this.invoices.filter(invoice => invoice.generatedBy === 'User').length
     },
@@ -272,9 +276,7 @@ export default {
       this.$store.dispatch('invoice/setDateRange', this.dateRange)
     },
 
-    updatePriceRange() {
-      this.$store.dispatch('invoice/setPriceRange', this.priceRange)
-    },
+ 
 
     toggleState(state) {
       this.$store.dispatch('invoice/toggleState', state)
@@ -283,7 +285,6 @@ export default {
     clearFilters() {
       this.searchQuery = ''
       this.dateRange = { start: '', end: '' }
-      this.priceRange = { min: '', max: '' }
       this.$store.dispatch('invoice/clearFilters')
     },
 
